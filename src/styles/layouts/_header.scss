@@ -1,0 +1,83 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--primaryBlury);
+    color: var(--secondary);
+    backdrop-filter: blur(4px);
+    border-bottom: solid 1px var(--primaryBlury);
+    z-index: 40;
+    &_menuBurger{
+        cursor: pointer;
+        transition: all ease-in-out .3s;
+        :first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        :last-child {
+            border-radius: 0 0 12px 12px;
+        }
+        * {
+            margin: 4 0px;
+            width: 1.5rem;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+    }
+    .active {
+        color: var(--primary);
+    }
+}
+
+.navbar_link li, .mobile-panel li{
+    transition: all ease-in-out .3s .3s;
+    position: relative;
+}
+.navbar_link li::after, .mobile-panel li::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary); /* bleu */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+}
+.navbar_link li:hover, .mobile-panel li:hover{
+    color: var(--primary);
+}
+.navbar_link li:hover::after,  .mobile-panel li:hover::after{
+    transform: scaleX(1);
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.mobile-panel {
+  position: fixed;
+  top: 61px;
+  right: 0;
+  width: 50vw;
+  height: calc(100vh - 61px);
+  padding-top:4.5rem ;
+  background-color: var(--primaryBlury);
+  backdrop-filter: blur(4px);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-left: solid 1px var(--primaryBlury);
+  color: var(--secondary);
+    .active {
+        color: var(--primary);
+    }
+}
+
+.mobile-panel.open {
+    transform: translateX(0);
+}

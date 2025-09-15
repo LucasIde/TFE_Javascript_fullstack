@@ -1,0 +1,13 @@
+.footerComp {
+    background-color: var(--secondary);
+    &_logo {
+        font-weight: bold;
+        color: var(--primary);
+    }
+    &_creator {
+        color :rgb(179, 179, 179);
+    }
+    &_location {
+        color :rgb(179, 179, 179);
+    }
+}
