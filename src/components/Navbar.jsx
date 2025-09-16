@@ -34,7 +34,7 @@ export default function Navbar() {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-// usepathname
+
   return (
   <>
   <nav className="navbar flex justify-between items-center px-6 py-4 text-xl">

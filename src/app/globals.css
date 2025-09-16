@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary:#fff;
-  --primaryBlury: #ffffff52;
+  --background: #ededed;
+  --foreground: #222;
+  --primary:#ededed;
+  --primaryBlury: #ededed52;
   --secondary:#000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #797dff;
+    --background: #222;
     --foreground: #ededed;
   }
 }
@@ -26,4 +26,17 @@ body {
 
 main{
   flex :1;
+}
+
+@layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    @apply bg-transparent text-[#e0e6ed];
+    -webkit-box-shadow: 0 0 0 1000px #2a3f5f inset;
+    -webkit-text-fill-color: #e0e6ed;
+    caret-color: #e0e6ed;
+    transition: background-color 5000s ease-in-out 0s; /* anti flash jaune Chrome */
+  }
 }

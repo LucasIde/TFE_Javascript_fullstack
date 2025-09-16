@@ -1,3 +1,5 @@
 export default function FriendsPage() {
-  return <div>Friends</div>;
+  return <main>
+    <div>Friends</div>
+  </main>;
 }

@@ -1,3 +1,5 @@
 export default function EventDetailPage() {
-  return <div>Event Details</div>;
+  return <main>
+    <div>Event Details</div>
+  </main>;
 }

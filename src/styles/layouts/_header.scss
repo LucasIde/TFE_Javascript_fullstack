@@ -7,6 +7,28 @@
     backdrop-filter: blur(4px);
     border-bottom: solid 1px var(--primaryBlury);
     z-index: 40;
+    & li{
+        transition: all ease-in-out .3s .3s;
+        position: relative;
+    }
+    & li::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background-color: var(--primary); /* bleu */
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .3s ease;
+    }
+    & li:hover{
+        color: var(--primary);
+    }
+    & li:hover::after{
+        transform: scaleX(1);
+    }
     &_menuBurger{
         cursor: pointer;
         transition: all ease-in-out .3s;
@@ -28,28 +50,6 @@
     }
 }
 
-.navbar_link li, .mobile-panel li{
-    transition: all ease-in-out .3s .3s;
-    position: relative;
-}
-.navbar_link li::after, .mobile-panel li::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 100%;
-    background-color: var(--primary); /* bleu */
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .3s ease;
-}
-.navbar_link li:hover, .mobile-panel li:hover{
-    color: var(--primary);
-}
-.navbar_link li:hover::after,  .mobile-panel li:hover::after{
-    transform: scaleX(1);
-}
 
 .rotate {
     transform: rotate(90deg);

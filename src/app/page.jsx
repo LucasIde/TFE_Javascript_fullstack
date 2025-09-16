@@ -1,6 +1,6 @@
 export default function HomePage() {
     return (
-        <>
+        <main>
             <h1>Test homePage</h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore assumenda inventore aliquam illum, nihil hic ducimus a. Facilis, aperiam vero. Similique eligendi eius quo laudantium harum quos maxime dicta ad.
             Laboriosam magni amet ducimus. Laborum explicabo vel accusamus provident, aut culpa similique labore vero dolores recusandae facilis non aspernatur atque ut sint expedita a in quia quos temporibus tempora est.
@@ -52,6 +52,6 @@ export default function HomePage() {
             Eaque facilis optio doloremque, ab voluptas aut commodi explicabo iste fugiat libero, voluptatum, rem deserunt soluta magni dolores delectus veritatis deleniti officiis. Praesentium consequatur nihil veritatis natus eius pariatur quasi?
             Doloremque minima magnam eveniet, est at ex optio libero, nihil recusandae molestiae architecto eos eius, ad saepe voluptatem sequi debitis? Expedita at quam illum autem cum, veniam atque natus obcaecati!
             Dignissimos sunt reprehenderit, nobis vero commodi odio laborum laboriosam quod molestiae aspernatur nisi dicta aperiam et illo similique voluptatum minima. Expedita placeat iste optio odio eius nobis aliquid autem doloribus?</p>
-        </>
+        </main>
     );
 }
