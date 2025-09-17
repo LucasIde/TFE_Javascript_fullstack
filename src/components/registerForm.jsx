@@ -19,16 +19,22 @@ async function registerAction(state, formData) {
 
 	// TODO Call API for register
 	// peut utiliser validation.data
-	// const res = await fetch('/api/register', {
-	//   method: 'POST',
-	//   headers: { 'Content-Type': 'application/json' },
-	//   body: JSON.stringify({ username, email, password }),
-	// });
+	console.log();
+	const res = await fetch('http://localhost:8080/api/auth/register', {
+	  method: 'POST',
+	  headers: { 'Content-Type': 'application/json' },
+	  body: JSON.stringify({ username :data.username, email : data.email, password :data.password }),
+	});
+	if (!res.ok) {
+		const error = await res.json();
+		alert(error.error || "Un problème est survenu, veuillez réessayer plus tard.");
+		return;
+	}
 
 	// TODO Save JWT in React App
 
 	// Si crédential valide, on redirigre la page "accueil"
-	redirect("/register/validate");
+	// redirect("/register/validate");
 	// return  useless si redirect est utiliser
 	return state;
 }

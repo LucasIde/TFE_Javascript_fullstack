@@ -3,9 +3,11 @@
 :root {
   --background: #ededed;
   --foreground: #222;
-  --primary:#ededed;
-  --primaryBlury: #ededed52;
-  --secondary:#000;
+  --primary:#ffdede;
+  --primaryBlury: #ffdede52;
+  --secondary:#232323;
+  --boxPrimary: #2a3f5f;
+  --boxSecondary: #001d41;
 }
 
 @media (prefers-color-scheme: dark) {

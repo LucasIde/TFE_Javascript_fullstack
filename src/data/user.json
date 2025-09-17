@@ -1,0 +1,169 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "pseudo": "SpaceWarrior",
+      "avatar": "https://picsum.photos/100/100?random=1",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 12,
+        "nbVictoires": 5,
+        "tauxVictoire": "41.7%"
+      },
+      "classementGlobal": 87,
+      "top3Jeux": [
+        { "nom": "Counter-Strike 2", "heures": 540, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/730/library_600x900.jpg" },
+        { "nom": "Dota 2", "heures": 320, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/library_600x900.jpg" },
+        { "nom": "Stardew Valley", "heures": 150, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Factorio", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/427520/library_600x900.jpg" }
+    },
+    {
+      "id": 2,
+      "pseudo": "RetroGamer",
+      "avatar": "https://picsum.photos/100/100?random=2",
+      "steamLogged": false,
+      "stats": {
+        "nbEvents": 8,
+        "nbVictoires": 2,
+        "tauxVictoire": "25.0%"
+      },
+      "classementGlobal": 142,
+      "jeuPrefere": { "nom": "Zelda: Breath of the Wild", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/736470/library_600x900.jpg" }
+    },
+    {
+      "id": 3,
+      "pseudo": "PixelMage",
+      "avatar": "https://picsum.photos/100/100?random=3",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 20,
+        "nbVictoires": 14,
+        "tauxVictoire": "70.0%"
+      },
+      "classementGlobal": 12,
+      "top3Jeux": [
+        { "nom": "Hades", "heures": 410, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" },
+        { "nom": "Hollow Knight", "heures": 220, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/367520/library_600x900.jpg" },
+        { "nom": "Celeste", "heures": 95, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/504230/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Hades", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg" }
+    },
+    {
+      "id": 4,
+      "pseudo": "NoScopeNinja",
+      "avatar": "https://picsum.photos/100/100?random=4",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 5,
+        "nbVictoires": 1,
+        "tauxVictoire": "20.0%"
+      },
+      "classementGlobal": 305,
+      "top3Jeux": [
+        { "nom": "Apex Legends", "heures": 760, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/library_600x900.jpg" },
+        { "nom": "Rainbow Six Siege", "heures": 420, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/library_600x900.jpg" },
+        { "nom": "Valorant", "heures": 280, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/773511/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Apex Legends", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/library_600x900.jpg" }
+    },
+    {
+      "id": 5,
+      "pseudo": "CalmeCoder",
+      "avatar": "https://picsum.photos/100/100?random=5",
+      "steamLogged": false,
+      "stats": {
+        "nbEvents": 3,
+        "nbVictoires": 0,
+        "tauxVictoire": "0.0%"
+      },
+      "classementGlobal": 412,
+      "jeuPrefere": { "nom": "Minecraft", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/220/library_600x900.jpg" }
+    },
+    {
+      "id": 6,
+      "pseudo": "AlphaDrone",
+      "avatar": "https://picsum.photos/100/100?random=6",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 30,
+        "nbVictoires": 18,
+        "tauxVictoire": "60.0%"
+      },
+      "classementGlobal": 34,
+      "top3Jeux": [
+        { "nom": "Cyberpunk 2077", "heures": 210, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg" },
+        { "nom": "The Witcher 3", "heures": 185, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" },
+        { "nom": "DOOM Eternal", "heures": 120, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "The Witcher 3", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" }
+    },
+    {
+      "id": 7,
+      "pseudo": "EchoHeart",
+      "avatar": "https://picsum.photos/100/100?random=7",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 16,
+        "nbVictoires": 9,
+        "tauxVictoire": "56.2%"
+      },
+      "classementGlobal": 58,
+      "top3Jeux": [
+        { "nom": "Among Us", "heures": 95, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/library_600x900.jpg" },
+        { "nom": "Phasmophobia", "heures": 70, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/739630/library_600x900.jpg" },
+        { "nom": "Sea of Thieves", "heures": 48, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172620/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Among Us", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/library_600x900.jpg" }
+    },
+    {
+      "id": 8,
+      "pseudo": "GlitchLord",
+      "avatar": "https://picsum.photos/100/100?random=8",
+      "steamLogged": false,
+      "stats": {
+        "nbEvents": 11,
+        "nbVictoires": 4,
+        "tauxVictoire": "36.4%"
+      },
+      "classementGlobal": 199,
+      "jeuPrefere": { "nom": "Skyrim", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/72850/library_600x900.jpg" }
+    },
+    {
+      "id": 9,
+      "pseudo": "Vortex",
+      "avatar": "https://picsum.photos/100/100?random=9",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 25,
+        "nbVictoires": 20,
+        "tauxVictoire": "80.0%"
+      },
+      "classementGlobal": 4,
+      "top3Jeux": [
+        { "nom": "League of Legends", "heures": 1340, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/945/library_600x900.jpg" },
+        { "nom": "Rocket League", "heures": 610, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/252950/library_600x900.jpg" },
+        { "nom": "Terraria", "heures": 260, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/105600/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Rocket League", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/252950/library_600x900.jpg" }
+    },
+    {
+      "id": 10,
+      "pseudo": "QuietStorm",
+      "avatar": "https://picsum.photos/100/100?random=10",
+      "steamLogged": true,
+      "stats": {
+        "nbEvents": 7,
+        "nbVictoires": 3,
+        "tauxVictoire": "42.9%"
+      },
+      "classementGlobal": 220,
+      "top3Jeux": [
+        { "nom": "Subnautica", "heures": 180, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/264710/library_600x900.jpg" },
+        { "nom": "No Man's Sky", "heures": 140, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/library_600x900.jpg" },
+        { "nom": "Ori and the Will of the Wisps", "heures": 60, "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1030870/library_600x900.jpg" }
+      ],
+      "jeuPrefere": { "nom": "Subnautica", "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/264710/library_600x900.jpg" }
+    }
+  ]
+}

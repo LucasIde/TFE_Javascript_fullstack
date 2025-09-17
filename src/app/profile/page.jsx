@@ -1,19 +1,39 @@
+import GameCard from "@/components/gameCard";
+import datas from "@/data/user.json"
+
+const data = datas.users[2];
+
 export default function ProfilePage() {
   return (
-  <main>
-    <div flex gap-6>
-      <img src="" alt="" />
-      <h2>Pseudo</h2>
+  <main className="container mx-auto flex justify-center">
+    <div>
+      <div className="flex justify-center">
+        <div className="bgc--blue profileUser inline-flex items-center gap-6 p-6">
+          <img src={data.avatar} alt="avatar_picture" />
+          <h2 className="text-2xl">{data.pseudo}</h2>
+        </div>
+      </div>
+      <div className="flex gap-6 my-4 justify-between">
+        <div className="bgc--blue px-12 py-4 text-lg">Event Played:<span className="border_stat">{data.stats.nbEvents}</span></div>
+        <div className="bgc--blue px-12 py-4 text-lg">Event Win: <span className="border_stat">{data.stats.nbVictoires}</span></div>
+        <div className="bgc--blue px-12 py-4 text-lg">
+          Win Ratio:
+          <span className="border_stat">
+            {(data.stats.nbEvents == 0) ?
+            "0%" :
+            (`${((data.stats.nbVictoires / data.stats.nbEvents) * 100).toFixed(2)}%`)}
+          </span>
+        </div>
+      </div>
+      {/* globale rectangle */}
+      <div className="bgc--blue flex flex-col p-6 my-4 text-xl">classement globale: <span className="border_stat">{data.classementGlobal}</span></div>
+      {(data.steamLogged) && <div className="flex gap-6 bgc--blue p-6 my-4">
+        {data.top3Jeux.map((element, index) => <GameCard  key={index} game={element}/>)}
+      </div>}
+      <div className="flex justify-center">
+        <div className="bgc--blue my-4 inline-flex flex-col items-center p-4 text-xl"> Favorite Game:<GameCard game={data.jeuPrefere}/></div>
+      </div>
     </div>
-    <div flex gap-6>
-      <div>nb event</div>
-      <div>nb victoire</div>
-      <div>taux de victoire</div>
-    </div>
-    {/* globale rectangle */}
-    <div>classement globale</div>
-    <div>map 3jeux les plus jouer</div>
-    <div>jeux préférer</div>
   </main>
   );
 }

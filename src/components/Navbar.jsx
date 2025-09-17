@@ -16,9 +16,7 @@ const linkDict = [
 
 export default function Navbar() {
   const pathName = usePathname();
-  console.log(pathName);
   const [menuOpen, setMenuOpen] = useState(false);
-  console.log(menuOpen);
   
   useEffect(() => {
     const handleResize = () => {

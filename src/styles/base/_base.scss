@@ -1,0 +1,10 @@
+.bgc--blue {
+    background: var(--boxPrimary); /* bleu-gris clair, ressort sur #171717 */
+    border: 2px solid var(--boxSecondary);
+    box-shadow: 0 0 18px #3b93ff4d, inset 0 0 10px #3b93ff33;
+    color: #cfd8e3;
+      clip-path: polygon(
+      0 0, calc(100% - 20px) 0, 100% 20px,
+      100% 100%, 20px 100%, 0 calc(100% - 20px)
+    );
+}

@@ -6,11 +6,7 @@ export const registerSchema = z.object({
 		.min(2, { message: "Le pseudo doit faire au moins 2 caractères" })
 		.max(30, { message: "Le pseudo ne peut pas dépasser 30 caractères" }),
 
-	email: z
-		.string()
-		.toLowerCase()
-		.trim()
-		.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { message: "Email invalide" }),
+	email: z.email(),
 
 	password: z
 		.string()
