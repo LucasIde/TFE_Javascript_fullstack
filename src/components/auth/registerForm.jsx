@@ -34,7 +34,7 @@ async function registerAction(state, formData) {
 	// TODO Save JWT in React App
 
 	// Si crédential valide, on redirigre la page "accueil"
-	// redirect("/register/validate");
+	redirect("/register/validate");
 	// return  useless si redirect est utiliser
 	return state;
 }
