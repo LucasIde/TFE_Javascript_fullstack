@@ -3,6 +3,7 @@
 import { validateRegister } from "@/utils/registerForm-utils";
 import { redirect } from "next/navigation";
 import { useActionState, useId } from "react";
+import { useAuth } from "./authContext";
 
 
 async function registerAction(state, formData) {
@@ -19,7 +20,6 @@ async function registerAction(state, formData) {
 
 	// TODO Call API for register
 	// peut utiliser validation.data
-	console.log();
 	const res = await fetch('http://localhost:8080/api/auth/register', {
 	  method: 'POST',
 	  headers: { 'Content-Type': 'application/json' },
@@ -34,9 +34,7 @@ async function registerAction(state, formData) {
 	// TODO Save JWT in React App
 
 	// Si crédential valide, on redirigre la page "accueil"
-	redirect("/register/validate");
-	// return  useless si redirect est utiliser
-	return state;
+	redirect("/login");
 }
 
 // find if there is an error in the input field
@@ -47,6 +45,10 @@ function getFieldError(errors, field) {
 export default function RegisterForm() {
 
 	const inputId = useId();
+    const { isAuthenticated } = useAuth();
+    if (isAuthenticated) {
+        redirect("/");
+    }
 
 	const initialState = {
 		errorMessage: null

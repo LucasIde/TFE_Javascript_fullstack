@@ -1,9 +1,18 @@
+'use client'
+
 import GameCard from "@/components/gameCard";
 import datas from "@/data/user.json"
+import { useAuth } from "@/components/auth/authContext";
+import { redirect } from "next/navigation";
 
 const data = datas.users[2];
 
 export default function ProfilePage() {
+  const {isAuthenticated} = useAuth();
+  if (!isAuthenticated) {
+    redirect("/");
+  }
+
   return (
   <main className="container mx-auto flex justify-center">
     <div>
@@ -26,7 +35,7 @@ export default function ProfilePage() {
         </div>
       </div>
       {/* globale rectangle */}
-      <div className="bgc--blue flex flex-col p-6 my-4 text-xl">classement globale: <span className="border_stat">{data.classementGlobal}</span></div>
+      <div className="bgc--blue flex flex-col p-6 my-4 text-xl">classement global: <span className="border_stat">{data.classementGlobal}</span></div>
       {(data.steamLogged) && <div className="flex gap-6 bgc--blue p-6 my-4">
         {data.top3Jeux.map((element, index) => <GameCard  key={index} game={element}/>)}
       </div>}
