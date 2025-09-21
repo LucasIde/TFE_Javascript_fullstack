@@ -3,9 +3,37 @@
 import { useActionState, useId, useState } from "react";
 import DatePicker from "./datePicker";
 import GameSearch from "./gameSearch";
-async function CreateEventAction(state, formData) {
+
+
+async function CreateEventAction(state, formData, dates, games) {
+    console.log("yo");
     const data = Object.fromEntries(formData);
+    const token = localStorage.getItem("token")
+    console.log(data.title, " ", data.description, " ", data.visibility, " ", data.max_player, " ", dates, " ", games, " ", token);
+    if (!data.title || !data.description || !data.visibility || !data.max_player || dates.length == 0 || games.length == 0 || !token) {
+        return { message: "incomplet information", data };
+    }
     return state;
+    const res = await fetch('http://localhost:8080/api/events/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title: data.title,
+            description: data.description,
+            visibility: data.visibility,
+            max_player: data.max_player,
+            dates,
+            games,
+            token
+        })
+    });
+    if (!res.ok) {
+        const error = await res.json();
+        alert(error.error || "Un problème est survenu, veuillez réessayer plus tard.");
+        return;
+    }
+    // redirect par après
+    return;
 }
 
 // doit récuper le creator du user qui fait un fetch
@@ -25,23 +53,33 @@ export default function EventForm() {
         errorMessage: null
     };
 
-    console.log(games);
+    // console.log(games);
 
-    const { state, handleCreateEvent, isPending } = useActionState(CreateEventAction, initialState);
+    const [state, handleCreateEvent, isPending] = useActionState((state, formData) => CreateEventAction(state, formData, dates, games), initialState);
 
     return (
         <div className="container mx-auto">
-            <form action={CreateEventAction} className="eventForm bgc--blue p-6 rounded-xl space-y-6 max-w-2xl mx-auto">
+            <form
+                action={handleCreateEvent}
+                className="eventForm bgc--blue p-6 rounded-xl space-y-6 max-w-2xl mx-auto"
+                // empêche d'envoyer le form via la touche enter
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
+                        e.preventDefault();
+                        e.target.blur(); // "valide" le champ en perdant le focus
+                    }
+                }}
+            >
                 <h2 className="text-2xl font-bold text-center mb-4">Créer un nouvel événement</h2>
                 {/* Title */}
                 <div className="flex flex-col space-y-2">
                     <label htmlFor={inputId + "title"} className="font-medium text-[#cfd8e3]">Titre</label>
-                    <input type="text" name="title" id={inputId + "title"} className="eventForm_input p-2 rounded border border-slate-600" />
+                    <input type="text" name="title" defaultValue={state?.data?.title || ""} id={inputId + "title"} className="eventForm_input p-2 rounded border border-slate-600" />
                 </div>
                 {/* Description */}
                 <div className="flex flex-col space-y-2">
                     <label htmlFor={inputId + "description"} className="font-medium text-[#cfd8e3]">Description</label>
-                    <textarea name="description" id={inputId + "description"} rows={3} className="eventForm_input p-2 rounded border border-slate-600" />
+                    <textarea name="description" id={inputId + "description"} defaultValue={state?.data?.description || ""} rows={3} className="eventForm_input p-2 rounded border border-slate-600" />
                 </div>
                 {/* Visibility + Max Players */}
                 <div className="grid grid-cols-2 gap-4">
@@ -54,11 +92,11 @@ export default function EventForm() {
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label htmlFor={inputId + "max_player"} className="font-medium text-[#cfd8e3]">Nombre max. de joueurs</label>
-                        <input type="number" name="max_player" id={inputId + "max_player"} className="eventForm_input p-2 rounded border border-slate-600" />
+                        <input type="number" name="max_player" id={inputId + "max_player"} defaultValue={state?.data?.max_player || ""} className="eventForm_input p-2 rounded border border-slate-600" />
                     </div>
                 </div>
                 {/* Date Picker */}
-                <GameSearch games={games} setGames={setGames}/>
+                <GameSearch games={games} setGames={setGames} />
                 <DatePicker dates={dates} setDates={setDates} />
                 {/* Submit */}
                 <button type="submit" disabled={isPending} className="submit_button w-full py-2 mt-4 rounded-lg shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
