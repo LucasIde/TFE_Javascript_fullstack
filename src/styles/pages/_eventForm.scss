@@ -1,0 +1,53 @@
+.eventForm {
+	&_input {
+		background-color: #1e293b;
+		color: var(--primary);
+	}
+
+	&_date {
+		background-color :#0f172a;
+		color: var(--primary);
+	}
+	.submit_button {
+		background-color: #0059ff;
+		color: var(--primary);
+		cursor: pointer;
+	}
+	.submit_button:hover {
+		background-color: #0041bb;
+	}
+	.add_date {
+		background-color: #008b13;
+		color: var(--primary);
+		cursor: pointer;
+	}
+	.add_date:hover {
+		background-color: #00690e;
+	}
+	.delete_date {
+		color: #ff2727;
+		cursor: pointer;
+	}
+	.delete_date:hover {
+		color: #b81d1d;
+	}
+	.gameWrapper {
+		background-color :#0f172a;
+	}
+	.gameInput {
+		position: relative;
+		&--bg {
+			background-color: #1e293b;
+		}
+		&_picture {
+			object-fit: cover;
+		}
+	}
+	.custom-scroll::-webkit-scrollbar {
+		background-color :#0f172a;
+	}
+	.custom-scroll::-webkit-scrollbar-thumb {
+		background-color : var(--boxPrimary);
+		border-radius: 9999px;
+	}
+}
