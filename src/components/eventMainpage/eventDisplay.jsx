@@ -30,12 +30,10 @@ export default function EventDisplay() {
       <button onClick={handledisplay} className="p-2 bg-blue-600 text-white rounded">
         Afficher les events
       </button>
-      <div className="flex">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3">
         <EventCard/>
         <EventCard/>
         <EventCard/>
-      </div>
-      <div className="flex">
         <EventCard/>
         <EventCard/>
         <EventCard/>

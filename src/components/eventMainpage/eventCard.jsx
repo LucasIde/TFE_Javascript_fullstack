@@ -20,7 +20,14 @@ export default function EventCard() {
                 </div>
                 {/* {(data.winner) && <span>the winner is :</span>} */}
             </div>
-            <div className={`eventCard_footer grid grid-cols-${nbImageGame}`}>
+            <div
+                className={`eventCard_footer grid ${nbImageGame === 1
+                    ? "grid-cols-1"
+                    : nbImageGame === 2
+                        ? "grid-cols-2"
+                        : "grid-cols-3"
+                    }`}
+            >
                 {data.Games.slice(0, 3).map((game, index) =>
                     <div key={index} className={(nbImageGame > 1) ? "eventCard_image--diagonal" : "eventCard_image"}>
                         <img src={game.headerImage || "/images/default_horizontal.png"}

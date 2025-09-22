@@ -6,7 +6,7 @@
     border-radius: 12px;
     background-color: var(--boxPrimary);
     overflow: hidden;
-    box-shadow: -0.3rem .3rem #fff;
+    box-shadow: -0.3rem .3rem var(--primary);
     &_title {
         text-decoration: underline 2px var(--boxSecondary);
         text-underline-offset: .3rem;
@@ -40,7 +40,6 @@
 
     &_image--diagonal {
         max-height: 150px;
-        position: relative;
         img {
             width: 100%;
             object-fit: cover;
@@ -63,7 +62,7 @@
     }
 }
 
-.eventCard:active {
+.eventCard:hover {
     transform: translate(-.3rem, .3rem);
     box-shadow: 0 0;
 }
