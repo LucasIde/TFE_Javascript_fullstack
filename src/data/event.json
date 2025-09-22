@@ -1,0 +1,136 @@
+[
+    {
+        "id": "1",
+        "title": "first Event",
+        "description": "the first event ever Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias sequi maiores hic aperiam expedita excepturi molestiae vero illo illum nobis, repudiandae tenetur voluptatibus, repellendus aliquam eum minima quas iste labore. Quos inventore, beatae possimus nulla qui, neque provident non ad sed velit voluptate voluptas, animi natus deleniti? Neque, aperiam iure? Quia, similique minima optio exercitationem iusto a corrupti reprehenderit unde. Quibusdam eum ad eligendi esse deserunt sequi ex magnam itaque soluta illo omnis odio, minus architecto inventore dolores hic tempore quia velit dolor, est reiciendis aut ea doloremque! Neque, nemo? Quia nesciunt, rerum repellat excepturi dolor aperiam quasi nostrum, commodi itaque cum aut? Rem et culpa reiciendis necessitatibus eveniet, iste quis aspernatur. Incidunt neque molestiae odit recusandae minus ut fugit? Quas sunt, illo veniam at eius error cumque ad repellat ipsa ea fuga magnam esse quis distinctio incidunt quae, tempore temporibus commodi dolorum quisquam suscipit tenetur beatae iusto? Exercitationem, omnis. Officiis quibusdam perspiciatis ea! Quidem fugit eveniet, necessitatibus nesciunt delectus qui vitae! Nesciunt iusto natus fugiat minima? Officiis cupiditate sed placeat? Pariatur mollitia deserunt explicabo, perspiciatis et eveniet ab repellat? Quibusdam reprehenderit optio id corporis voluptas atque earum aliquid, voluptates dolore ipsum sequi quidem itaque maiores ratione dolores hic quod velit molestias laboriosam distinctio ut deserunt! Nihil architecto facilis similique. Molestiae facere vel, rem, consequuntur saepe perspiciatis quo veritatis facilis debitis harum ipsum distinctio ut minus dicta ad vitae cupiditate consectetur, enim quisquam? Eius laudantium rerum in quisquam. Velit, neque. Sint deserunt animi cupiditate rerum, explicabo id vel iure provident consequuntur necessitatibus ad laudantium quidem nam quaerat perferendis? Exercitationem incidunt vitae officia nihil soluta facilis ullam in deserunt! Assumenda, voluptatum! Rerum dolor nisi commodi quia saepe vero explicabo, blanditiis, ducimus delectus voluptas id aliquam. Consectetur adipisci deserunt tenetur pariatur porro quis, magnam eius explicabo, doloremque optio exercitationem, autem earum delectus.",
+        "visibility": "public",
+        "status": "pending",
+        "finalDate": null,
+        "max_player": 100,
+        "createdAt": "2025-09-22T12:20:33.089Z",
+        "updatedAt": "2025-09-22T12:20:33.089Z",
+        "creatorId": "1",
+        "winnerId": null,
+        "EventDates": [
+            {
+                "id": "3",
+                "date": "2025-10-03T12:30:00.000Z",
+                "createdAt": "2025-09-22T12:20:33.096Z",
+                "updatedAt": "2025-09-22T12:20:33.096Z",
+                "eventId": "1"
+            },
+            {
+                "id": "2",
+                "date": "2025-09-19T12:30:00.000Z",
+                "createdAt": "2025-09-22T12:20:33.096Z",
+                "updatedAt": "2025-09-22T12:20:33.096Z",
+                "eventId": "1"
+            },
+            {
+                "id": "1",
+                "date": "2025-09-28T12:24:00.000Z",
+                "createdAt": "2025-09-22T12:20:33.096Z",
+                "updatedAt": "2025-09-22T12:20:33.096Z",
+                "eventId": "1"
+            }
+        ],
+        "Games": [
+            {
+                "id": "56522",
+                "appId": 1145360,
+                "isCustom": false,
+                "name": "Hades",
+                "headerImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg",
+                "libraryImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg",
+                "lastUpdated": "2025-09-22T06:44:20.713Z",
+                "createdAt": "2025-09-22T06:44:20.713Z",
+                "updatedAt": "2025-09-22T06:44:20.713Z",
+                "EventGame": {
+                    "createdAt": "2025-09-22T12:20:33.100Z",
+                    "updatedAt": "2025-09-22T12:20:33.100Z",
+                    "eventId": "1",
+                    "gameId": "56522"
+                }
+            },
+            {
+                "id": "49773",
+                "appId": 1030300,
+                "isCustom": false,
+                "name": "Hollow Knight: Silksong",
+                "headerImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1030300/header.jpg",
+                "libraryImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1030300/library_600x900.jpg",
+                "lastUpdated": "2025-09-22T06:44:00.091Z",
+                "createdAt": "2025-09-22T06:44:00.091Z",
+                "updatedAt": "2025-09-22T06:44:00.091Z",
+                "EventGame": {
+                    "createdAt": "2025-09-22T12:20:33.100Z",
+                    "updatedAt": "2025-09-22T12:20:33.100Z",
+                    "eventId": "1",
+                    "gameId": "49773"
+                }
+            },
+            {
+                "id": "199939",
+                "appId": null,
+                "isCustom": true,
+                "name": "tft",
+                "headerImage": null,
+                "libraryImage": null,
+                "lastUpdated": "2025-09-22T06:53:23.469Z",
+                "createdAt": "2025-09-22T06:53:23.470Z",
+                "updatedAt": "2025-09-22T06:53:23.470Z",
+                "EventGame": {
+                    "createdAt": "2025-09-22T12:20:33.100Z",
+                    "updatedAt": "2025-09-22T12:20:33.100Z",
+                    "eventId": "1",
+                    "gameId": "199939"
+                }
+            },
+            {
+                "id": "62425",
+                "appId": 1245620,
+                "isCustom": false,
+                "name": "ELDEN RING",
+                "headerImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",
+                "libraryImage": "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg",
+                "lastUpdated": "2025-09-22T06:44:39.040Z",
+                "createdAt": "2025-09-22T06:44:39.040Z",
+                "updatedAt": "2025-09-22T06:44:39.040Z",
+                "EventGame": {
+                    "createdAt": "2025-09-22T12:20:33.100Z",
+                    "updatedAt": "2025-09-22T12:20:33.100Z",
+                    "eventId": "1",
+                    "gameId": "62425"
+                }
+            }
+        ],
+        "Users": [
+            {
+                "id": "1",
+                "username": "test",
+                "discriminator": "1113",
+                "email": "test@test.com",
+                "password": "$argon2id$v=19$m=65536,t=3,p=4$yE10A1qz6rddkkLwKKy5Cw$GIyeu/JXG2npSROhG2meHL6wZ4t9KLd7xIuBwKJObJE",
+                "role": "user",
+                "createdAt": "2025-09-22T07:53:38.243Z",
+                "updatedAt": "2025-09-22T07:53:38.243Z",
+                "UserEvent": {
+                    "status": "accepted",
+                    "role": "moderator",
+                    "score": null
+                }
+            }
+        ],
+        "creator": {
+            "id": "1",
+            "username": "test",
+            "discriminator": "1113",
+            "email": "test@test.com",
+            "password": "$argon2id$v=19$m=65536,t=3,p=4$yE10A1qz6rddkkLwKKy5Cw$GIyeu/JXG2npSROhG2meHL6wZ4t9KLd7xIuBwKJObJE",
+            "role": "user",
+            "createdAt": "2025-09-22T07:53:38.243Z",
+            "updatedAt": "2025-09-22T07:53:38.243Z"
+        },
+        "winner": null
+    }
+]

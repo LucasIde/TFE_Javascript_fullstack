@@ -20,7 +20,6 @@ export default function GameSearch({ games, setGames }) {
 
 	function handleSelect(game) {
 		// éviter les doublons
-		console.log(game);
 		if (!games.find((g) => g.id === game.id)) {
 			setGames([...games, game]);
 		}

@@ -110,7 +110,6 @@ export default function RegisterForm() {
 				)}
 				<div>
 					<button type='submit' disabled={isPending} className="register_button p-1">Register</button>
-					{/* {console.log(state.errorMessage)} */}
 				</div>
 			</form>
 		</div>

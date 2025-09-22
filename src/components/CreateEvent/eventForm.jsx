@@ -6,17 +6,20 @@ import GameSearch from "./gameSearch";
 
 
 async function CreateEventAction(state, formData, dates, games) {
-    console.log("yo");
     const data = Object.fromEntries(formData);
-    const token = localStorage.getItem("token")
-    console.log(data.title, " ", data.description, " ", data.visibility, " ", data.max_player, " ", dates, " ", games, " ", token);
-    if (!data.title || !data.description || !data.visibility || !data.max_player || dates.length == 0 || games.length == 0 || !token) {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    console.log(data.title, " ", data.description, " ", data.visibility, " ", data.max_player, " ", dates, " ", games, " ");
+    if (!data.title || !data.description || !data.visibility || !data.max_player || dates.length == 0 || games.length == 0) {
+        alert("incomplete information");
         return { message: "incomplet information", data };
     }
-    return state;
     const res = await fetch('http://localhost:8080/api/events/add', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`,
+        },
         body: JSON.stringify({
             title: data.title,
             description: data.description,
@@ -24,7 +27,6 @@ async function CreateEventAction(state, formData, dates, games) {
             max_player: data.max_player,
             dates,
             games,
-            token
         })
     });
     if (!res.ok) {
@@ -32,6 +34,7 @@ async function CreateEventAction(state, formData, dates, games) {
         alert(error.error || "Un problème est survenu, veuillez réessayer plus tard.");
         return;
     }
+    console.log(res.event);
     // redirect par après
     return;
 }
@@ -52,8 +55,6 @@ export default function EventForm() {
     const initialState = {
         errorMessage: null
     };
-
-    // console.log(games);
 
     const [state, handleCreateEvent, isPending] = useActionState((state, formData) => CreateEventAction(state, formData, dates, games), initialState);
 
