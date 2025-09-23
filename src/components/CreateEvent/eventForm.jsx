@@ -9,8 +9,7 @@ async function CreateEventAction(state, formData, dates, games) {
     const data = Object.fromEntries(formData);
     const token = localStorage.getItem("token");
     console.log(token);
-    console.log(data.title, " ", data.description, " ", data.visibility, " ", data.max_player, " ", dates, " ", games, " ");
-    if (!data.title || !data.description || !data.visibility || !data.max_player || dates.length == 0 || games.length == 0) {
+    if (!data.title || !data.description || !data.visibility || !data.max_player || !data.event_duration || data.event_duration < 1 || dates.length == 0 || games.length == 0) {
         alert("incomplete information");
         return { message: "incomplet information", data };
     }
@@ -25,6 +24,7 @@ async function CreateEventAction(state, formData, dates, games) {
             description: data.description,
             visibility: data.visibility,
             max_player: data.max_player,
+            event_duration : data.event_duration,
             dates,
             games,
         })
@@ -83,17 +83,21 @@ export default function EventForm() {
                     <textarea name="description" id={inputId + "description"} defaultValue={state?.data?.description || ""} rows={3} className="eventForm_input p-2 rounded border border-slate-600" />
                 </div>
                 {/* Visibility + Max Players */}
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col space-y-2">
+                <div className="grid grid-cols-3 gap-4">
+                    <div className="flex flex-col justify-between space-y-2">
                         <label htmlFor={inputId + "visibility"} className="font-medium text-[#cfd8e3]">Visibilité</label>
                         <select name="visibility" id={inputId + "visibility"} defaultValue="private" className="eventForm_input p-2 rounded border border-slate-600">
                             <option value="private">Privé</option>
                             <option value="public">Public</option>
                         </select>
                     </div>
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col justify-between space-y-2">
                         <label htmlFor={inputId + "max_player"} className="font-medium text-[#cfd8e3]">Nombre max. de joueurs</label>
                         <input type="number" name="max_player" id={inputId + "max_player"} defaultValue={state?.data?.max_player || ""} className="eventForm_input p-2 rounded border border-slate-600" />
+                    </div>
+                    <div className="flex flex-col justify-between space-y-2">
+                        <label htmlFor={inputId + "event_duration"} className="font-medium text-[#cfd8e3]">durée de l'event (en heure)</label>
+                        <input type="number" name="event_duration" id={inputId + "event_duration"} defaultValue={state?.data?.event_duration || ""} className="eventForm_input p-2 rounded border border-slate-600" />
                     </div>
                 </div>
                 {/* Date Picker */}

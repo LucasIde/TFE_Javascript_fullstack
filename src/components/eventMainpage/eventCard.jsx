@@ -1,14 +1,13 @@
-import datas from "@/data/event.json"
+import { useRouter } from "next/navigation";
 
-console.log(datas[0]);
 
-const data = datas[0]
+export default function EventCard({ data }) {
+    const router = useRouter();
 
-const nbImageGame = Math.min(data.Games.length, 3);
 
-export default function EventCard() {
+    const nbImageGame = Math.min(data.Games.length, 3);
     return (
-        <div className="eventCard">
+        <div className="eventCard" onClick={() => router.push(`/events/${data.id}`)}>
             <div className="p-4">
                 <h2 className="eventCard_title text-xl">{data.title} :</h2>
                 <div className="eventCard_visibility p-4">{data.visibility}</div>

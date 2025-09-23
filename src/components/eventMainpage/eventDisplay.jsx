@@ -1,42 +1,48 @@
 'use client'
 
+import { useEffect, useState } from "react";
 import EventCard from "./eventCard";
 
-export default function EventDisplay() {
-  async function handledisplay() {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:8080/api/events", {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      });
+async function handledisplay(setEvents) {
 
-      if (!res.ok) {
-        throw new Error(`Erreur serveur: ${res.status}`);
+  try {
+    const token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:8080/api/events", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
+    });
 
-      const response = await res.json();
-      console.log("events:", response);
-    } catch (err) {
-      console.error("Erreur fetch events:", err);
+    if (!res.ok) {
+      throw new Error(`Erreur serveur: ${res.status}`);
     }
-  }
 
+    const response = await res.json();
+    setEvents(response);
+  }
+  catch (err) {
+    console.error("server Error");
+  }
+}
+
+export default function EventDisplay() {
+
+  const [events, setEvents] = useState({});
+
+  useEffect(() => {
+    handledisplay(setEvents);
+  }, []);
+
+  console.log(events);
   return (
     <div>
-      <button onClick={handledisplay} className="p-2 bg-blue-600 text-white rounded">
-        Afficher les events
-      </button>
       <div className="grid md:grid-cols-2 lg:grid-cols-3">
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
+        {events?.public?.map((element, index) =>
+          <EventCard key={index} data={element}/>)}
+        {events?.private?.map((element, index) =>
+          <EventCard key={index} data={element}/>)}
       </div>
     </div>
   );
