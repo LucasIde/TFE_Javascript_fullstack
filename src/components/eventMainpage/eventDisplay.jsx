@@ -35,7 +35,6 @@ export default function EventDisplay() {
     handledisplay(setEvents);
   }, []);
 
-  console.log(events);
   return (
     <div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3">

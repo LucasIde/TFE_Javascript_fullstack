@@ -8,7 +8,6 @@ import GameSearch from "./gameSearch";
 async function CreateEventAction(state, formData, dates, games) {
     const data = Object.fromEntries(formData);
     const token = localStorage.getItem("token");
-    console.log(token);
     if (!data.title || !data.description || !data.visibility || !data.max_player || !data.event_duration || data.event_duration < 1 || dates.length == 0 || games.length == 0) {
         alert("incomplete information");
         return { message: "incomplet information", data };
@@ -34,7 +33,6 @@ async function CreateEventAction(state, formData, dates, games) {
         alert(error.error || "Un problème est survenu, veuillez réessayer plus tard.");
         return;
     }
-    console.log(res.event);
     // redirect par après
     return;
 }

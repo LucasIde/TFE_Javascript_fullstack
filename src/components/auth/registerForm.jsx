@@ -10,7 +10,6 @@ async function registerAction(state, formData) {
 	const data = Object.fromEntries(formData);
 
 	const validation = validateRegister(data);
-	console.log(validation);
 	if (!validation.ok) {
 		return {
 			errorMessage: validation.errors, // tableau [{field, message}]

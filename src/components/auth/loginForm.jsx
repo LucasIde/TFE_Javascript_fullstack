@@ -16,9 +16,7 @@ async function loginAction(state, formData, login) {
         alert(response.error || "Un problème est survenu, veuillez réessayer plus tard.");
         return;
     }
-    console.log(response.token);
     login(response.token);
-    console.log(response.token);
 
     // Si crédential valide, on redirigre la page "accueil"
     redirect("/");

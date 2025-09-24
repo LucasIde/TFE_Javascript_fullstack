@@ -1,0 +1,20 @@
+.EventPage_games {
+    position: relative;
+    &_vote {
+        margin: .2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #00000082;
+    }
+}
+.EventPage_dates {
+    position: relative;
+    &_vote {
+        margin: .2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #00000082;
+    }
+}
