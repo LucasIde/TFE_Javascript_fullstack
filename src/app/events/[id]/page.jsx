@@ -3,10 +3,10 @@ import EventPage from "@/components/eventFullPage/eventDisplayPage";
 
 export default async function EventDetailPage({ params }) {
   const {id} = await params;
-  
+
   return (
-    <main>
+    <div className="pt-20">
       <EventPage id={id}/>
-    </main>
+    </div>
   );
 }

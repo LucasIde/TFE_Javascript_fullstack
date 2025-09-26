@@ -11,8 +11,8 @@ export default function FriendsPage() {
   }
 
   return (
-    <main>
+    <div className="pt-20">
       <FriendsList/>
-    </main>
+    </div>
   );
 }

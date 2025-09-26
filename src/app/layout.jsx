@@ -14,10 +14,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-          <header className="pt-20">
+          <header>
             <Navbar/>
           </header>
+          <main>
             {children}
+          </main>
           <footer>
             <FooterComponent/>
           </footer>

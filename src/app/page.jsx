@@ -2,14 +2,14 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white pt-20">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-6">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
           Organise tes sessions gaming facilement 🎮
         </h1>
         <p className="text-lg md:text-xl max-w-2xl mb-8">
-          Choisis un jeu, trouve une date avec tes amis, et lance la partie. 
+          Choisis un jeu, trouve une date avec tes amis, et lance la partie.
           Tout est centralisé dans un seul espace simple et efficace.
         </p>
         <div className="flex gap-4">
@@ -93,6 +93,6 @@ export default function HomePage() {
           Rejoindre maintenant
         </Link>
       </section>
-    </main>
+    </div>
   );
 }

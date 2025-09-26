@@ -2,8 +2,8 @@ import EventForm from "@/components/CreateEvent/eventForm";
 
 export default function CreateEventPage() {
   return (
-    <main>
+    <div className="pt-20">
       <EventForm/>
-    </main>
+    </div>
   );
 }

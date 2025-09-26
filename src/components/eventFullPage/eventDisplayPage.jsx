@@ -130,6 +130,76 @@ async function handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessag
     }
 }
 
+async function handleJoinEvent(id, setRefreshEvent) {
+    try {
+        const res = await fetch(
+            `http://localhost:8080/api/events/${id}/join`,
+            {
+                method: "POST",
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+            }
+        );
+        if (res.ok) {
+            setRefreshEvent(prev => !prev);
+            alert("Vous avez rejoint l'événement ✅");
+        } else {
+            const err = await res.json();
+            alert(err.error || "Erreur lors de la tentative de rejoindre");
+        }
+    } catch (err) {
+        alert("Erreur réseau");
+    }
+}
+
+async function updateEventStatus(id, newStatus, setRefreshEvent) {
+    try {
+        console.log("yo");
+        const token = localStorage.getItem("token");
+        const res = await fetch(`http://localhost:8080/api/events/${id}/status`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ status: newStatus })
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || "Erreur serveur");
+        }
+
+        setRefreshEvent(prev => !prev);
+    } catch (err) {
+        alert(err.message || "Impossible de mettre à jour le statut");
+    }
+}
+
+async function handleEndEvent(id, winnerId, setRefreshEvent, setShowEndModal) {
+  try {
+    const res = await fetch(`http://localhost:8080/api/events/${id}/end`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ winnerId: winnerId || null })
+    });
+
+    if (res.ok) {
+      setRefreshEvent(prev => !prev);
+      setShowEndModal(false);
+      alert("Événement clôturé ✅");
+    } else {
+      const err = await res.json();
+      alert(err.error || "Erreur lors de la clôture");
+    }
+  } catch (err) {
+    alert("Erreur réseau");
+  }
+}
+
+
 function handleVote(getData, setData, id) {
     if (getData.includes(id)) {
         setData(getData.filter(data => data !== id));
@@ -147,6 +217,9 @@ export default function EventPage({ id }) {
     const [voteSummary, setVoteSummary] = useState({ games: [], dates: [] })
     const [refreshVote, setRefreshVote] = useState(false);
     const [refreshEvent, setRefreshEvent] = useState(false);
+    const [showEndModal, setShowEndModal] = useState(false);
+    const [selectedWinner, setSelectedWinner] = useState(null);
+
 
 
     const [finalDateId, setFinalDateId] = useState(null);
@@ -199,12 +272,23 @@ export default function EventPage({ id }) {
                 <EventDescription text={event.description} />
             </section>
 
+            {isCreatorOrAdmin && event.status === "planned" && (
+                <button
+                    onClick={() => setShowEndModal(true)}
+                    className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+                >
+                    Terminer l'événement
+                </button>
+            )}
+
             {isCreatorOrAdmin && (
                 <div className="flex gap-4">
                     {/* Clôturer les votes */}
                     {!event.votesClosed && (
                         <button
-                            onClick={async () => putcloseVote(id, setRefreshEvent)}
+                            onClick={() => {
+                                putcloseVote(id, setRefreshEvent);
+                            }}
                             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                         >
                             Clôturer les votes
@@ -228,6 +312,18 @@ export default function EventPage({ id }) {
                     </button>
                 </div>
             )}
+
+            {/* Bouton rejoindre un événement public */}
+            {event.visibility === "public" &&
+                !event.Users?.some(u => u.id === user?.id && u.UserEvent.status === "accepted") && (
+                    <button
+                        onClick={() => handleJoinEvent(id, setRefreshEvent)}
+                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    >
+                        Rejoindre l'événement
+                    </button>
+                )}
+
 
             {/* Bouton accepter l’invitation */}
             {event.Users?.some(u => u.id === user?.id && u.UserEvent.status === "invited") && (
@@ -426,7 +522,10 @@ export default function EventPage({ id }) {
 
                         {/* Bouton submit */}
                         <button
-                            onClick={() => handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm, setRefreshEvent })}
+                            onClick={() => {
+                                handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm, setRefreshEvent });
+                                updateEventStatus(id, "planned", setRefreshEvent); // 👈 ajout ici
+                            }}
                             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
                         >
                             Enregistrer
@@ -449,6 +548,41 @@ export default function EventPage({ id }) {
 
                         <h2 className="text-xl font-semibold">Inviter un utilisateur</h2>
                         <UserSearchInvite eventId={id} setRefreshEvent={setRefreshEvent} invitedUsers={event.Users || []} />
+                    </div>
+                </div>
+            )}
+            {showEndModal && (
+                <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full space-y-4 relative">
+                        <button
+                            onClick={() => setShowEndModal(false)}
+                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                        >
+                            ✕
+                        </button>
+
+                        <h2 className="text-xl font-semibold">Clôturer l'événement</h2>
+
+                        <p>Sélectionnez le gagnant (optionnel) :</p>
+                        <select
+                            value={selectedWinner || ""}
+                            onChange={(e) => setSelectedWinner(e.target.value || null)}
+                            className="w-full p-2 rounded bg-gray-700 text-white"
+                        >
+                            <option value="">— Pas de gagnant —</option>
+                            {event.Users?.map(u => (
+                                <option key={u.id} value={u.id}>
+                                    {u.username}#{u.discriminator}
+                                </option>
+                            ))}
+                        </select>
+
+                        <button
+                            onClick={() => handleEndEvent(id, selectedWinner, setRefreshEvent, setShowEndModal)}
+                            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 w-full"
+                        >
+                            Clôturer l'événement
+                        </button>
                     </div>
                 </div>
             )}
