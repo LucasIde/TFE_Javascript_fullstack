@@ -7,46 +7,46 @@
     background-color: var(--boxPrimary);
     overflow: hidden;
     box-shadow: -0.3rem .3rem var(--primary);
+
     &_title {
-        text-decoration: underline 2px var(--boxSecondary);
-        text-underline-offset: .3rem;
+        text-transform: capitalize;
     }
 
     &_desc {
-        padding: .4rem;
-        border-radius: 12px;
-        border: solid 3px var(--boxSecondary);
+        text-align: justify;
     }
 
-    &_visibility {
-        position: absolute;
-        top: 0;
-        right: 0;
+    &_visibility--public {
+        background-color: #80d7e9;
+        padding: 3px;
+        border-radius: 12px;
+        color: #000000;
     }
-    &_footer {
-        background-color: var(--boxSecondary);
+    &_visibility--private {
+        background-color: #80e9d1;
+        padding: 3px;
+        border-radius: 12px;
+        color: #000000;
+    }
+
+    &_creator {
+        font-weight: bold;
     }
 
     &_image {
+        box-sizing: border-box;
+        overflow: hidden;
         img {
-            display: inline-block;
-            max-height: 150px;
-            width: 100%;
-            height: 100%;
+            height: 150px;
             object-fit: cover;
             object-position: center;
+            width: 100%;
+            display: inline-block;
         }
     }
-
-    &_image--diagonal {
-        max-height: 150px;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
+    
+    &_image--single {
+        border-radius: 12px;
     }
 
     &_image--diagonal:not(:first-child):not(:last-child) {
@@ -55,10 +55,12 @@
 
     &_image--diagonal:first-child {
         clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+        border-radius: 12px 0 0 12px;
     }
-
+    
     &_image--diagonal:last-child {
         clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+        border-radius: 0 12px 12px 0;
     }
 }
 

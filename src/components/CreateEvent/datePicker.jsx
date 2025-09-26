@@ -6,9 +6,18 @@ export default function DatePicker({ dates, setDates }) {
 
   const addDate = () => {
     if (!newDate || dates.includes(newDate) || dates.length >= 10) return;
-    setDates([...dates, newDate]);
-  };
 
+    // Vérifie que la date est >= maintenant + 1h
+    const chosen = new Date(newDate);
+    const limit = new Date(Date.now() + 60 * 60 * 1000);
+    if (chosen < limit) {
+      alert("La date doit être au moins une heure dans le futur.");
+      return;
+    }
+
+    setDates([...dates, newDate]);
+    setNewDate("");
+  };
   const deleteElement = (index) => {
     setDates(dates.filter((_, i) => i !== index));
   };
