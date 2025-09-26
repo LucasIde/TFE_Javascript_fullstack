@@ -12,7 +12,7 @@ export default function EventDescription({ text }) {
   const displayText = expanded || !isLong ? text : text.slice(0, limit) + "...";
 
   return (
-    <section>
+    <div>
       <h2 className="text-xl font-semibold mb-2">Description</h2>
       <p className="">{displayText}</p>
       {isLong && (
@@ -23,6 +23,6 @@ export default function EventDescription({ text }) {
           {expanded ? "Réduire" : "Voir plus"}
         </button>
       )}
-    </section>
+    </div>
   );
 }

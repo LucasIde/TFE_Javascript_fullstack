@@ -15,7 +15,7 @@ export default function EventCard({ data }) {
                 <div className="flex justify-between">
                     <div>Created By : {data.creator.username}</div>
                     <div>status : {data.status}</div>
-                    <div>{data.Users.length} / {data.max_player} Players</div>
+                    <div>{data.participantCount} / {data.max_player} Players</div>
                 </div>
                 {/* {(data.winner) && <span>the winner is :</span>} */}
             </div>

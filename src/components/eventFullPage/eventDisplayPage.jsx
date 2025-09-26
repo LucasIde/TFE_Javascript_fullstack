@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import EventDescription from "./description.component";
 import { jwtDecode } from "jwt-decode";
+import UserSearchInvite from "./UserSearchInvite.component";
 
 
 function getUserFromToken() {
@@ -33,6 +34,7 @@ async function getEvent({ setEvent, id }) {
         }
 
         const response = await res.json();
+        console.log(response);
         setEvent(response);
     }
     catch (err) {
@@ -40,7 +42,7 @@ async function getEvent({ setEvent, id }) {
     }
 }
 
-async function submitVotes(id, selectedGameIds, selectedDateIds) {
+async function submitVotes(id, selectedGameIds, selectedDateIds, setRefreshVote) {
     const token = localStorage.getItem("token");
     const res = await fetch(`http://localhost:8080/api/events/${id}/votes`, {
         method: "PUT",
@@ -58,7 +60,7 @@ async function submitVotes(id, selectedGameIds, selectedDateIds) {
         console.log("server Error");
         return;
     }
-
+    setRefreshVote((prev) => !prev);
     return res.json();
 }
 
@@ -84,7 +86,7 @@ async function fetchSummary({ id, setVoteSummary }) {
     }
 }
 
-async function putcloseVote(id) {
+async function putcloseVote(id, setRefreshEvent) {
     {
         try {
             const token = localStorage.getItem("token");
@@ -94,6 +96,7 @@ async function putcloseVote(id) {
             });
             if (!res.ok) throw new Error("Erreur lors de la clôture des votes");
             const data = await res.json();
+            setRefreshEvent(prev => !prev);
             alert(data.message || "Votes clôturés ✅");
         } catch (err) {
             alert(err.message);
@@ -101,7 +104,7 @@ async function putcloseVote(id) {
     }
 }
 
-async function handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm }) {
+async function handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm, setRefreshEvent }) {
     try {
         const token = localStorage.getItem("token");
         const res = await fetch(`http://localhost:8080/api/events/${id}/final`, {
@@ -120,6 +123,7 @@ async function handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessag
 
         const data = await res.json();
         setMessage(data.message || "Choix finaux enregistrés ✅");
+        setRefreshEvent(prev => !prev);
         setShowFinalForm(false);
     } catch (err) {
         setMessage(err.message);
@@ -141,22 +145,27 @@ export default function EventPage({ id }) {
     const [gameVote, setGameVote] = useState([]);
     const [dateVote, setDateVote] = useState([]);
     const [voteSummary, setVoteSummary] = useState({ games: [], dates: [] })
+    const [refreshVote, setRefreshVote] = useState(false);
+    const [refreshEvent, setRefreshEvent] = useState(false);
+
 
     const [finalDateId, setFinalDateId] = useState(null);
     const [finalGameIds, setFinalGameIds] = useState([]);
     const [message, setMessage] = useState("");
     const [showFinalForm, setShowFinalForm] = useState(false);
-
-
-
+    const [user, setUser] = useState(null);
+    const [showInviteModal, setShowInviteModal] = useState(false);
 
 
     useEffect(() => {
-        getEvent({ setEvent, id });
         getMyVotes({ id, setGameVote, setDateVote });
         fetchSummary({ id, setVoteSummary });
-    }, []);
-    const user = getUserFromToken();
+    }, [refreshVote])
+
+    useEffect(() => {
+        getEvent({ setEvent, id });
+        setUser(getUserFromToken());
+    }, [refreshEvent]);
 
     let isCreatorOrAdmin
 
@@ -165,7 +174,6 @@ export default function EventPage({ id }) {
     }
     else {
         isCreatorOrAdmin = user.id === event.creator?.id || user.role === "admin";
-        console.log(isCreatorOrAdmin);
     }
 
     return (
@@ -187,14 +195,16 @@ export default function EventPage({ id }) {
             </section>
 
             {/* Description */}
-            <EventDescription text={event.description} />
+            <section>
+                <EventDescription text={event.description} />
+            </section>
 
             {isCreatorOrAdmin && (
                 <div className="flex gap-4">
                     {/* Clôturer les votes */}
                     {!event.votesClosed && (
                         <button
-                            onClick={async () => putcloseVote(id)}
+                            onClick={async () => putcloseVote(id, setRefreshEvent)}
                             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                         >
                             Clôturer les votes
@@ -210,9 +220,38 @@ export default function EventPage({ id }) {
                             Définir les choix finaux
                         </button>
                     )}
+                    <button
+                        onClick={() => setShowInviteModal(true)}
+                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    >
+                        Inviter des utilisateurs
+                    </button>
                 </div>
             )}
 
+            {/* Bouton accepter l’invitation */}
+            {event.Users?.some(u => u.id === user?.id && u.UserEvent.status === "invited") && (
+                <button
+                    onClick={async () => {
+                        const res = await fetch(
+                            `http://localhost:8080/api/events/${id}/accept`,
+                            {
+                                method: "PUT",
+                                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                            }
+                        );
+                        if (res.ok) {
+                            setRefreshEvent(prev => !prev);
+                            alert("Invitation acceptée ✅");
+                        } else {
+                            alert("Erreur lors de l'acceptation");
+                        }
+                    }}
+                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                    Accepter l'invitation
+                </button>
+            )}
 
             {/* Jeux */}
             <section>
@@ -279,27 +318,51 @@ export default function EventPage({ id }) {
                 )}
             </section>
 
-            <button className="bg-blue-900 px-3 py-1 rounded border" onClick={() => submitVotes(id, gameVote, dateVote)}>Vote</button>
+            <button className="bg-blue-900 px-3 py-1 rounded border" onClick={() => submitVotes(id, gameVote, dateVote, setRefreshVote)}>Vote</button>
 
             {/* Participants */}
             <section>
                 <h2 className="text-xl font-semibold mb-2">Participants</h2>
                 <ul className="divide-y divide-gray-200 rounded-lg">
-                    {event.Users?.map((user) => (
-                        <li key={user.id} className="p-2 text-sm flex justify-between">
+                    {event.Users?.map((u) => (
+                        <li key={u.id} className="p-2 text-sm flex justify-between items-center">
                             <span>
-                                {user.username}#{user.discriminator}
+                                {u.username}#{u.discriminator}
                             </span>
                             <span className="text-gray-500">
-                                {user.UserEvent.role} ({user.UserEvent.status})
+                                {u.UserEvent.role} ({u.UserEvent.status})
                             </span>
+
+                            {/* 👇 Bouton quitter (uniquement si user connecté et pas créateur) */}
+                            {user?.id === u.id && u.id !== event.creator?.id && (
+                                <button
+                                    onClick={async () => {
+                                        const res = await fetch(
+                                            `http://localhost:8080/api/events/${id}/invite/${u.id}`,
+                                            {
+                                                method: "DELETE",
+                                                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                                            }
+                                        );
+                                        if (res.ok) {
+                                            setRefreshEvent(prev => !prev);
+                                            alert("Vous avez quitté l'événement ✅");
+                                        } else {
+                                            alert("Erreur lors de la sortie");
+                                        }
+                                    }}
+                                    className="ml-4 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                                >
+                                    Quitter
+                                </button>
+                            )}
                         </li>
                     ))}
                 </ul>
             </section>
 
             {showFinalForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
                     <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full space-y-4 relative">
                         <button
                             onClick={() => setShowFinalForm(false)}
@@ -363,7 +426,7 @@ export default function EventPage({ id }) {
 
                         {/* Bouton submit */}
                         <button
-                            onClick={() =>  handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm })}
+                            onClick={() => handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm, setRefreshEvent })}
                             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
                         >
                             Enregistrer
@@ -374,7 +437,21 @@ export default function EventPage({ id }) {
                 </div>
             )}
 
+            {showInviteModal && (
+                <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full space-y-4 relative">
+                        <button
+                            onClick={() => setShowInviteModal(false)}
+                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                        >
+                            ✕
+                        </button>
 
-        </div >
+                        <h2 className="text-xl font-semibold">Inviter un utilisateur</h2>
+                        <UserSearchInvite eventId={id} setRefreshEvent={setRefreshEvent} invitedUsers={event.Users || []} />
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
