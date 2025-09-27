@@ -6,7 +6,7 @@ export default function FooterComponent() {
 
                 {/* Logo ou Nom */}
                 <div className="text-lg footerComp_logo">
-                  🎮 EventPlanner
+                  🎮 GameDay
                 </div>
 
                 {/* Navigation secondaire */}

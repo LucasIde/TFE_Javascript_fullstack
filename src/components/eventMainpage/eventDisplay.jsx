@@ -68,10 +68,11 @@ export default function EventDisplay() {
             640: { slidesPerView: 1 }, // mobile
             768: { slidesPerView: 2 }, // tablette
             1024: { slidesPerView: 3 }, // desktop
+            1240: { slidesPerView: 4 }, // desktop
           }}
         >
           {filtered.map((el, i) => (
-            <SwiperSlide key={`${prefix}-${i}`}>
+            <SwiperSlide key={`${prefix}-${i}`} >
               <EventCard data={el} />
             </SwiperSlide>
           ))}
@@ -83,7 +84,7 @@ export default function EventDisplay() {
 
   console.log("events:", events);
   return (
-    <div>
+    <div className="px-8">
       {/* 🔍 SearchBar + bouton créer */}
       <div className="mb-6 flex items-center justify-between">
         <input
@@ -97,7 +98,7 @@ export default function EventDisplay() {
         {token && (
           <button
             onClick={() => router.push("/events/create")}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 text-[#dfd2d2] px-4 py-2 rounded hover:bg-blue-700"
           >
             + Créer un événement
           </button>

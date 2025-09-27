@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import EventDescription from "./description.component";
 import { jwtDecode } from "jwt-decode";
-import UserSearchInvite from "./UserSearchInvite.component";
+import UserSearchInvite from "../eventpage/componentsEvent/UserSearchInvite.component";
 
 
 function getUserFromToken() {
@@ -209,7 +209,7 @@ function handleVote(getData, setData, id) {
     }
 }
 
-export default function EventPage({ id }) {
+export default function EventPageOld({ id }) {
 
     const [event, setEvent] = useState({});
     const [gameVote, setGameVote] = useState([]);
@@ -275,7 +275,7 @@ export default function EventPage({ id }) {
             {isCreatorOrAdmin && event.status === "planned" && (
                 <button
                     onClick={() => setShowEndModal(true)}
-                    className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+                    className="px-4 py-2 bg-purple-600 text-[#dfd2d2] rounded hover:bg-purple-700"
                 >
                     Terminer l'événement
                 </button>
@@ -289,7 +289,7 @@ export default function EventPage({ id }) {
                             onClick={() => {
                                 putcloseVote(id, setRefreshEvent);
                             }}
-                            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                            className="px-4 py-2 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
                         >
                             Clôturer les votes
                         </button>
@@ -299,14 +299,14 @@ export default function EventPage({ id }) {
                     {event.votesClosed && (
                         <button
                             onClick={() => setShowFinalForm(!showFinalForm)}
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            className="px-4 py-2 bg-blue-600 text-[#dfd2d2] rounded hover:bg-blue-700"
                         >
                             Définir les choix finaux
                         </button>
                     )}
                     <button
                         onClick={() => setShowInviteModal(true)}
-                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                        className="px-4 py-2 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                     >
                         Inviter des utilisateurs
                     </button>
@@ -318,7 +318,7 @@ export default function EventPage({ id }) {
                 !event.Users?.some(u => u.id === user?.id && u.UserEvent.status === "accepted") && (
                     <button
                         onClick={() => handleJoinEvent(id, setRefreshEvent)}
-                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                        className="px-4 py-2 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                     >
                         Rejoindre l'événement
                     </button>
@@ -343,7 +343,7 @@ export default function EventPage({ id }) {
                             alert("Erreur lors de l'acceptation");
                         }
                     }}
-                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    className="px-4 py-2 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                 >
                     Accepter l'invitation
                 </button>
@@ -373,7 +373,7 @@ export default function EventPage({ id }) {
                             <div className="p-2 flex-1 flex items-center justify-center">
                                 <h3 className="text-center text-sm font-medium">{game.name}</h3>
                             </div>
-                            <span className="EventPage_games_vote text-white text-xs px-2 py-1 rounded-full">
+                            <span className="EventPage_games_vote text-[#dfd2d2] text-xs px-2 py-1 rounded-full">
                                 {voteSummary?.games[game.id] || 0} votes
                             </span>
                         </div>
@@ -397,7 +397,7 @@ export default function EventPage({ id }) {
                             >
                                 <p className="text-lg">débute le {start.toLocaleDateString()} à {start.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </p>
                                 <p className="text-lg font-medium">se termine le {end.toLocaleDateString()} à {end.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
-                                <span className="EventPage_dates_vote text-white text-xs px-2 py-1 rounded-full">
+                                <span className="EventPage_dates_vote text-[#dfd2d2] text-xs px-2 py-1 rounded-full">
                                     {voteSummary?.dates[date.id] || 0} votes
                                 </span>
                             </div>
@@ -447,7 +447,7 @@ export default function EventPage({ id }) {
                                             alert("Erreur lors de la sortie");
                                         }
                                     }}
-                                    className="ml-4 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                                    className="ml-4 px-2 py-1 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
                                 >
                                     Quitter
                                 </button>
@@ -462,7 +462,7 @@ export default function EventPage({ id }) {
                     <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full space-y-4 relative">
                         <button
                             onClick={() => setShowFinalForm(false)}
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 hover:text-[#dfd2d2]"
                         >
                             ✕
                         </button>
@@ -475,7 +475,7 @@ export default function EventPage({ id }) {
                             <select
                                 value={finalDateId || ""}
                                 onChange={(e) => setFinalDateId(e.target.value)}
-                                className="p-2 rounded bg-gray-700 text-white w-full"
+                                className="p-2 rounded bg-gray-700 text-[#dfd2d2] w-full"
                             >
                                 <option value="">-- Sélectionner une date --</option>
                                 {[...event.EventDates]
@@ -526,7 +526,7 @@ export default function EventPage({ id }) {
                                 handleSaveFinalChoices({ id, finalDateId, finalGameIds, setMessage, setShowFinalForm, setRefreshEvent });
                                 updateEventStatus(id, "planned", setRefreshEvent); // 👈 ajout ici
                             }}
-                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                            className="px-4 py-2 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                         >
                             Enregistrer
                         </button>
@@ -541,7 +541,7 @@ export default function EventPage({ id }) {
                     <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full space-y-4 relative">
                         <button
                             onClick={() => setShowInviteModal(false)}
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 hover:text-[#dfd2d2]"
                         >
                             ✕
                         </button>
@@ -556,7 +556,7 @@ export default function EventPage({ id }) {
                     <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full space-y-4 relative">
                         <button
                             onClick={() => setShowEndModal(false)}
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 hover:text-[#dfd2d2]"
                         >
                             ✕
                         </button>
@@ -567,7 +567,7 @@ export default function EventPage({ id }) {
                         <select
                             value={selectedWinner || ""}
                             onChange={(e) => setSelectedWinner(e.target.value || null)}
-                            className="w-full p-2 rounded bg-gray-700 text-white"
+                            className="w-full p-2 rounded bg-gray-700 text-[#dfd2d2]"
                         >
                             <option value="">— Pas de gagnant —</option>
                             {event.Users?.map(u => (
@@ -579,7 +579,7 @@ export default function EventPage({ id }) {
 
                         <button
                             onClick={() => handleEndEvent(id, selectedWinner, setRefreshEvent, setShowEndModal)}
-                            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 w-full"
+                            className="px-4 py-2 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700 w-full"
                         >
                             Clôturer l'événement
                         </button>

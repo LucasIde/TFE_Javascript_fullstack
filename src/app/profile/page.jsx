@@ -6,7 +6,7 @@ export default function WorkInProgress() {
   const router = useRouter();
 
   return (
-    <div className="work_page flex flex-col items-center justify-center min-h-screen text-white p-6">
+    <div className="work_page flex flex-col items-center justify-center min-h-screen text-[#dfd2d2] p-6">
       {/* Icône / illustration */}
 <div className="mb-6 animate-spin-slow">
   <svg

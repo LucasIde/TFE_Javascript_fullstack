@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function UserSearchInvite({ eventId, setRefreshEvent, invitedUsers }) {
+  console.log(eventId, invitedUsers);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [friends, setFriends] = useState([]);
@@ -38,7 +39,7 @@ export default function UserSearchInvite({ eventId, setRefreshEvent, invitedUser
     const delay = setTimeout(async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:8080/api/friends/search?query=${query}`, {
+        const res = await fetch(`http://localhost:8080/api/friends/search/user?query=${query}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) setResults(await res.json());
@@ -95,21 +96,21 @@ export default function UserSearchInvite({ eventId, setRefreshEvent, invitedUser
         {loading && <p className="text-sm text-gray-500">Recherche...</p>}
 
         {results.length > 0 && (
-          <ul className="divide-y divide-gray-200 rounded border bg-white text-black mt-2">
+          <ul className="divide-y divide-gray-200 rounded border bg-[#dfd2d2] text-[#dfd2d2] mt-2">
             {results.map((u) => (
-              <li key={u.id} className="p-2 flex justify-between items-center">
+              <li key={u.id} className="p-2 flex justify-between items-center bg-[#001d41] text-[#dfd2d2]">
                 <span>{u.username}#{u.discriminator}</span>
                 {invitedIds.has(u.id) ? (
                   <button
                     onClick={() => removeUser(u.id)}
-                    className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                    className="px-2 py-1 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
                   >
                     Retirer
                   </button>
                 ) : (
                   <button
                     onClick={() => inviteUser(u.id)}
-                    className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                    className="px-2 py-1 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                   >
                     Inviter
                   </button>
@@ -128,21 +129,21 @@ export default function UserSearchInvite({ eventId, setRefreshEvent, invitedUser
       <div>
         <h3 className="font-medium mb-2">Amis</h3>
         {friends.length > 0 ? (
-          <ul className="divide-y divide-gray-200 rounded border bg-white text-black">
+          <ul className="divide-y divide-gray-200 rounded border bg-[#dfd2d2] text-[#dfd2d2]">
             {friends.map((f) => (
-              <li key={f.id} className="p-2 flex justify-between items-center">
+              <li key={f.id} className="p-2 flex justify-between bg-[#001d41] items-center">
                 <span>{f.username}#{f.discriminator}</span>
                 {invitedIds.has(f.id) ? (
                   <button
                     onClick={() => removeUser(f.id)}
-                    className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                    className="px-2 py-1 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
                   >
                     Retirer
                   </button>
                 ) : (
                   <button
                     onClick={() => inviteUser(f.id)}
-                    className="px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    className="px-2 py-1 bg-blue-600 text-[#dfd2d2] rounded hover:bg-blue-700"
                   >
                     Inviter
                   </button>

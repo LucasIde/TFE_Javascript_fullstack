@@ -71,7 +71,7 @@ export default function GameSearch({ games, setGames }) {
 				</button>
 			</div>
 			{results.length > 0 && (
-				<ul className="custom-scroll absolute z-10 bg-white border w-full rounded shadow max-h-64 overflow-y-auto border-slate-500">
+				<ul className="custom-scroll absolute z-10 bg-[#dfd2d2] border w-full rounded shadow max-h-64 overflow-y-auto border-slate-500">
 					{results.map((game) => (
 						<li
 							key={game.id}

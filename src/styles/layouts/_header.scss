@@ -29,6 +29,11 @@
     & li:hover::after{
         transform: scaleX(1);
     }
+    &_logo {
+        position: absolute;
+        top: -.8rem;
+        height: 140%;
+    }
     &_menuBurger{
         cursor: pointer;
         transition: all ease-in-out .3s;

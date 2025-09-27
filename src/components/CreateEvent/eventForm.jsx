@@ -3,6 +3,7 @@
 import { useActionState, useId, useState } from "react";
 import DatePicker from "./datePicker";
 import GameSearch from "./gameSearch";
+import { redirect } from "next/navigation";
 
 
 async function CreateEventAction(state, formData, dates, games) {
@@ -33,8 +34,7 @@ async function CreateEventAction(state, formData, dates, games) {
         alert(error.error || "Un problème est survenu, veuillez réessayer plus tard.");
         return;
     }
-    // redirect par après
-    return;
+    redirect("/events");
 }
 
 // doit récuper le creator du user qui fait un fetch

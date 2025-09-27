@@ -118,7 +118,7 @@ export default function FriendsList() {
                     <span>{u.username}#{u.discriminator}</span>
                     <button
                       onClick={() => sendRequest(u.id)}
-                      className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                      className="px-2 py-1 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                     >
                       Ajouter
                     </button>
@@ -144,13 +144,13 @@ export default function FriendsList() {
               <div className="flex gap-2">
                 <button
                   onClick={() => acceptRequest(u.id)}
-                  className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                  className="px-2 py-1 bg-green-600 text-[#dfd2d2] rounded hover:bg-green-700"
                 >
                   Accepter
                 </button>
                 <button
                   onClick={() => declineRequest(u.id)}
-                  className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                  className="px-2 py-1 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
                 >
                   Refuser
                 </button>
@@ -188,7 +188,7 @@ export default function FriendsList() {
               <span>{u.username}#{u.discriminator}</span>
               <button
                 onClick={() => removeFriend(u.id)}
-                className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                className="px-2 py-1 bg-red-600 text-[#dfd2d2] rounded hover:bg-red-700"
               >
                 Supprimer
               </button>

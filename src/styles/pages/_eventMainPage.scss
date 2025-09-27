@@ -1,15 +1,41 @@
+.eventPage{
+    & button {
+        cursor: pointer;
+    }
+    &_box-reverse {
+        background-color: #1e2d4a;
+        border: solid 3px #2f3b52;
+        padding: 10px;
+        border-radius: 12px;
+    }
+}
+
 .EventPage_games {
+    position: relative;
+    cursor: pointer;
+    &_vote {
+        margin: .2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #000000e0;
+    }
+}
+
+.EventPage_games--final {
     position: relative;
     &_vote {
         margin: .2rem;
         position: absolute;
         top: 0;
         right: 0;
-        background: #00000082;
+        background: #000000e0;
     }
 }
+
 .EventPage_dates {
     position: relative;
+    cursor: pointer;
     &_vote {
         margin: .2rem;
         position: absolute;

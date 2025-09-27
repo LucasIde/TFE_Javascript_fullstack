@@ -1,12 +1,27 @@
 .eventCard {
     cursor: pointer;
+    max-width: 320px;
+    aspect-ratio: 4/5;
     margin: 2rem;
     position: relative;
     color: var(--primary);
     border-radius: 12px;
     background-color: var(--boxPrimary);
     overflow: hidden;
-    box-shadow: -0.3rem .3rem var(--primary);
+
+    &-image {
+        position: relative;
+        z-index: 1;
+    }
+
+    &-image::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: var(--boxSecondary);
+        border-radius: 12px;
+    }
 
     &_title {
         text-transform: capitalize;
@@ -17,16 +32,22 @@
     }
 
     &_visibility--public {
-        background-color: #80d7e9;
-        padding: 3px;
+        background-color: #3DDC97;
+        /* teal vert moderne */
+        padding: 3px 8px;
         border-radius: 12px;
-        color: #000000;
+        color: #0B2E13;
+        /* texte lisible */
+        font-weight: 600;
     }
+
     &_visibility--private {
-        background-color: #80e9d1;
-        padding: 3px;
+        background-color: #6C63FF;
+        /* violet pour exclusif */
+        padding: 3px 8px;
         border-radius: 12px;
-        color: #000000;
+        color: var(--primary);
+        font-weight: 600;
     }
 
     &_creator {
@@ -36,6 +57,8 @@
     &_image {
         box-sizing: border-box;
         overflow: hidden;
+        z-index: 1;
+
         img {
             height: 150px;
             object-fit: cover;
@@ -44,7 +67,7 @@
             display: inline-block;
         }
     }
-    
+
     &_image--single {
         border-radius: 12px;
     }
@@ -57,14 +80,20 @@
         clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
         border-radius: 12px 0 0 12px;
     }
-    
+
     &_image--diagonal:last-child {
         clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
         border-radius: 0 12px 12px 0;
     }
 }
 
-.eventCard:hover {
-    transform: translate(-.3rem, .3rem);
-    box-shadow: 0 0;
+.eventCard {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.eventCard:hover,
+.eventCard:active {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(128, 215, 233, 0.25);
+}
+
