@@ -36,7 +36,7 @@ export default function EventPage({ id }) {
 				<EventPageDate handleVote={handleVote} />
 				{(!eventState.event?.votesClosed) && <div className="text-center">
 					<button
-						className="bg-blue-900 px-50 py-2 my-4 rounded border"
+						className="bg-blue-900 px-10 md:px-50 py-2 my-4 rounded border"
 						onClick={() => submitVotes(id, eventState.gameVote, eventState.dateVote, eventState.setRefreshVote)}>
 						Vote
 					</button>

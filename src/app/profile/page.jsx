@@ -21,7 +21,7 @@ export default function WorkInProgress() {
 
 
       {/* Titre */}
-      <h1 className="text-4xl font-bold mb-2">🚧 Work in Progress 🚧</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mb-2">🚧 Work in Progress 🚧</h1>
       <p className="text-lg text-gray-300 mb-8 text-center max-w-lg">
         Cette page est en cours de construction.
         Reviens bientôt pour découvrir de nouvelles fonctionnalités ✨
